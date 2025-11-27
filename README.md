@@ -1,3 +1,10 @@
+![C](https://img.shields.io/badge/C-Standard_99-A8B9CC?style=flat&logo=c&logoColor=white)
+![GCC](https://img.shields.io/badge/Compiler-GCC-FFCF00?style=flat&logo=gnu&logoColor=black)
+![Make](https://img.shields.io/badge/Build-GNU_Make-003BCC?style=flat&logo=gnu&logoColor=white)
+![Architecture](https://img.shields.io/badge/Structure-Modular_(_Header_%2F_Source_)-blue?style=flat)
+![Data Structure](https://img.shields.io/badge/Data_Structure-Linked_List-important?style=flat)
+![Memory](https://img.shields.io/badge/Memory-Manual_Mgmt-critical?style=flat)
+![UI](https://img.shields.io/badge/UI-Console_%2F_CLI-4EAA25?style=flat&logo=gnometerminal&logoColor=white)
 # Dictionary Manager
 
 This is a console application written in C for the BME "Programming Fundamentals" course. It functions as a complete multilingual dictionary manager. The system uses a **linked list** to manage multiple bilingual dictionaries and supports full CRUD (Create, Read, Update, Delete) operations for both dictionaries and the word pairs they contain.
