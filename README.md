@@ -4,6 +4,8 @@ This is a console application written in C for the BME "Programming Fundamentals
 
 The project is built with a modular structure in C and features manual memory management with `debugmalloc.h` for leak detection.
 
+---
+
 ## 📚 Features
 
 ### Dictionary Management
