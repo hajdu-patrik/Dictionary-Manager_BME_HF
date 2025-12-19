@@ -169,11 +169,14 @@ int main() {
 
                                 // A helyesen megadott szavak nyomon követésére szolgál
                                 int Sikerek_Szama = 0;
-                                bool Megoldva[Szopar_Szam];
-                                for(int i = 0; i < Szopar_Szam; i++)
-                                    Megoldva[i] = false;
 
-                                srand(time(NULL));
+                                bool *Megoldva = (bool*)calloc(Szopar_Szam, sizeof(bool)); 
+                                if (Megoldva == NULL) {
+                                    printf("Memoria foglalas sikertelen!\n");
+                                    break;
+                                }
+
+                                srand((unsigned int)time(NULL));
                                 Torol_Szotar_Felirat();
                                 while (Sikerek_Szama < Szopar_Szam) {
                                     int Random_Szo = rand() % (Szopar_Szam + 1);

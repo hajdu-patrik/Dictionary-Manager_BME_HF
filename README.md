@@ -1,10 +1,12 @@
 ![C](https://img.shields.io/badge/C-Standard_99-A8B9CC?style=flat&logo=c&logoColor=white)
 ![GCC](https://img.shields.io/badge/Compiler-GCC-FFCF00?style=flat&logo=gnu&logoColor=black)
+![CMake](https://img.shields.io/badge/Build-CMake-064F8C?style=flat&logo=cmake&logoColor=white)
 ![Make](https://img.shields.io/badge/Build-GNU_Make-003BCC?style=flat&logo=gnu&logoColor=white)
 ![Architecture](https://img.shields.io/badge/Structure-Modular_(_Header_%2F_Source_)-blue?style=flat)
 ![Data Structure](https://img.shields.io/badge/Data_Structure-Linked_List-important?style=flat)
 ![Memory](https://img.shields.io/badge/Memory-Manual_Mgmt-critical?style=flat)
 ![UI](https://img.shields.io/badge/UI-Console_%2F_CLI-4EAA25?style=flat&logo=gnometerminal&logoColor=white)
+
 # Dictionary Manager
 
 This is a console application written in C for the BME "Programming Fundamentals" course. It functions as a complete multilingual dictionary manager. The system uses a **linked list** to manage multiple bilingual dictionaries and supports full CRUD (Create, Read, Update, Delete) operations for both dictionaries and the word pairs they contain.
@@ -55,43 +57,63 @@ The project is built with a modular structure in C and features manual memory ma
 ---
 
 ## 📂 Modular Folder Structure
-To enhance clarity and professional organization, the project files are structured into dedicated directories:
-* **`src/`**: Contains all C source files (`.c`).
-* **`include/`**: Contains all header files (`.h`), defining the public interfaces and data structures.
-* **`data/`**: Stores example dictionary files (e.g., `magyar_olasz.txt`).
-* **`build/`**: The output directory for compiled object files and the final executable.
+
+To enforce clarity and professional organization, the project uses a standard, build-system compatible directory layout:
+
+* **`src/main/c/`**: Contains all C implementation files (`.c`), such as the main program logic and menu modules.
+* **`src/main/public/`**: Contains all header files (`.h`), defining the public interfaces and data structures.
+* **`data/`**: Stores example dictionary files (e.g., `magyar_olasz.txt`) required for the program to run.
+* **`build/`**: The target output directory for compiled objects and the executable.
+* **`CMakeLists.txt`**: The configuration file for the CMake build system.
 
 ---
 
 ## ⚙️ Compilation & Execution
 
-The project requires the **GCC** compiler. Compilation can be achieved either through direct compiler calls or using the build automation tool `make`.
+The project supports both **GNU Make** and **CMake** build systems, ensuring cross-platform compatibility.
 
-### A. Direct GCC Compilation (Recommended for Minimal Environments like MINGW/Git Bash)
-This method explicitly links all source files and is the most reliable if build tools are missing.
+### A. Using Makefile (Recommended for Linux/MinGW)
+The Makefile automatically handles compilation, linking, and copying the required data files.
 
-1.  **Create Build Directory:** The output directory must exist before compilation:
+1.  **Build (Compile & Link):**
     ```bash
-    mkdir build
+    make
+    ```
+2.  **Run Application:**
+    This command builds the project and immediately runs the executable.
+    ```bash
+    make run
+    ```
+3.  **Clean Up:**
+    Deletes all generated files in the `build/` directory.
+    ```bash
+    make clean
     ```
 
-2.  **Compile and Link:** Execute the following command from the project root. The `-Iinclude` flag is crucial as it tells the compiler where to find the header files.
+### B. Using CMake (Cross-Platform / Visual Studio)
+CMake is the industry standard for C projects. It generates the necessary build files for your specific system.
+
+1.  **Generate Build Files:**
+    Create the build directory and configure the project.
     ```bash
-    gcc -Wall -Wextra -std=c99 -g -Iinclude src/main.c src/lista_muveletek.c src/szotar_muveletek.c src/seged.c -o build/dictionary_manager.exe
+    cmake -S . -B build
+    ```
+
+2.  **Compile:**
+    Build the executable. This step also copies the `data/` folder next to the executable automatically.
+    ```bash
+    cmake --build build
     ```
 
 3.  **Run Application:**
-    ```bash
-    ./build/dictionary_manager.exe
-    ```
-    
-### B. Build Automation (Ideal Method: Requires GNU Make)
-If the **GNU Make** utility is installed and configured, the process is simpler using the included `Makefile`:
-```bash
-make
-./build/dictionary_manager.exe
-```
-Use make clean to remove compiled files and the build/ directory.
+    * **Windows (Visual Studio / MinGW):**
+        ```bash
+        ./build/Debug/dictionary_manager.exe
+        ```
+    * **Linux / Mac:**
+        ```bash
+        ./build/dictionary_manager
+        ```
 
 ---
 
@@ -126,3 +148,11 @@ The program uses a strict, custom format for saving and loading dictionaries.
     * A single line of text containing all data, using `;` and `,` as delimiters.
     * **Format:** `nyelv1;nyelv2;szo1_nyelv1,szo1_nyelv2;szo2_nyelv1,szo2_nyelv2;...`
     * **Example:** `magyar;olasz;alma,mela;korte,pera;kutya,cane;macska,gatto;`
+
+---
+
+## 📦 Releases
+
+| Version | Description | Download |
+| :--- | :--- | :--- |
+| **v1.0.0** | **Dictionary Manager v1.0.0** - Initial release of the C console application. Features linked-list based dictionary management, file persistence, and quiz mode. | [Source code (zip)](https://github.com/hajdu-patrik/Dictionary-Manager_C/archive/refs/tags/v1.0.0.zip) |
